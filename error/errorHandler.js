@@ -10,7 +10,7 @@ const handleAPIError = (err, res) => {
 const handleWebsiteError = (err, res) => {
     if (err.statusCode === 401) {
         // TODO if 
-        return res.send({
+        return res.status(err.statusCode).send({
             page: "login page",
             message: err.message
         })

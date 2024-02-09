@@ -1,3 +1,3 @@
 exports.getHomepage = (req, res) => {
-    res.send(`hello ${req.session.user}`)
+    res.send(`hello ${req.session.username}`)
 }

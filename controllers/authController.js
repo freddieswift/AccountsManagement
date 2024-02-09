@@ -8,7 +8,7 @@ exports.isLoggedIn = (req, res, next) => {
     next()
 }
 
-exports.login = (req, res, next) => {
+exports.login = async (req, res, next) => {
     const username = req.body.username
     const password = req.body.password
 
@@ -16,19 +16,20 @@ exports.login = (req, res, next) => {
         return next(new CustomError('please provide username and password', 400))
     }
 
-    if (username !== "test" || password !== "test") {
-        return next(new CustomError("incorrect credentials", 401))
+    try {
+        const user = await User.find({ username: username })
+        if (!user) return next(new CustomError('invalid credentials', 401))
+        req.session.username = username
+        res.status(200).send({
+            status: "success",
+            data: {
+                username
+            }
+        })
     }
-
-
-    req.session.username = username
-    console.log("hello")
-    res.status(200).send({
-        status: "success",
-        data: {
-            username
-        }
-    })
+    catch (err) {
+        next(err)
+    }
 }
 
 exports.logout = (req, res, next) => {
