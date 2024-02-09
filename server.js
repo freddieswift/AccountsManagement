@@ -1,17 +1,9 @@
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 
-const app = require('./app')
-
 dotenv.config({ path: './config.env' })
 
-const database = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
-
-mongoose.connect(database, {
-    useNewUrlParser: true
-}).then(() => {
-    console.log("DB connection successful")
-})
+const app = require('./app')
 
 process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
