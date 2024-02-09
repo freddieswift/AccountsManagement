@@ -1,10 +1,12 @@
 const CustomError = require('../error/customError')
 const User = require('../models/userModel')
 
-exports.isLoggedIn = (req, res, next) => {
+exports.isLoggedIn = async (req, res, next) => {
     if (!req.session.username) {
         return next(new CustomError("please login", 401))
     }
+    const user = await User.findOne({ username: req.session.username })
+    req.user = user
     next()
 }
 
