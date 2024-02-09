@@ -48,21 +48,17 @@ exports.logout = (req, res, next) => {
     })
 }
 
-exports.createUser = (req, res, next) => {
-    const username = req.body.username
-    const password = req.body.password
-
-    const user = new User({
-        username: username,
-        password: password
-    })
-
-    user.save()
-        .then(doc => {
-            console.log(doc)
-            res.send(doc)
+exports.createUser = async (req, res, next) => {
+    try {
+        const user = await User.create(req.body)
+        res.status(201).json({
+            status: "success",
+            data: {
+                user
+            }
         })
-        .catch(err => {
-            next(err)
-        })
+    }
+    catch (err) {
+        next(err)
+    }
 }
