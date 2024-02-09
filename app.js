@@ -1,8 +1,6 @@
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
-const dotenv = require('dotenv')
-const mongoose = require('mongoose')
 
 const viewRouter = require('./routes/viewRoutes')
 const userRouter = require('./routes/userRoutes')
@@ -15,15 +13,15 @@ app.use(express.json())
 //DB CONNECTION
 const clientPromise = require('./db/connectDatabase')
 
-//SESSION
+//SESSION SET UP
 app.use(session({
-    secret: 'myverysecretsecret',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     name: 'sessionID',
     store: MongoStore.create({
         clientPromise: clientPromise,
-        ttl: 20
+        ttl: 1 * 24 * 60 * 60 // 1 day
     })
 }))
 
