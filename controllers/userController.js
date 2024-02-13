@@ -1,5 +1,8 @@
 const User = require('../models/userModel')
+const Company = require('../models/companyModel')
 const CustomError = require('../error/customError')
+const crypto = require('crypto')
+
 exports.createNewUser = async (req, res, next) => {
     //if user is already logged in, they already have an account 
     // and therefor need to use /team
@@ -24,16 +27,27 @@ exports.createNewUser = async (req, res, next) => {
     }
 }
 
-exports.createTeamMember = async (req, res, next) => {
+exports.inviteTeamMember = async (req, res, next) => {
+    if (!req.body.email) return next(new CustomError('please provide email address', 400))
+
     try {
-        const user = await User.create({
-            ...req.body,
-            companyID: req.user.companyID
+        //check if there is already a user with that email
+        const userCheck = await User.find({ email: req.body.email })
+        if (userCheck.length !== 0) return next(new CustomError('there is already a user with this email', 400))
+
+        const inviteToken = crypto.randomBytes(32).toString('hex');
+
+        const company = await Company.findById(req.user.companyID)
+        company.invitations.push({
+            email: req.body.email,
+            inviteToken
         })
-        res.status(201).send({
+        await company.save()
+
+        res.status(200).send({
             status: 'success',
             data: {
-                user: user
+                inviteToken
             }
         })
     }
@@ -41,3 +55,21 @@ exports.createTeamMember = async (req, res, next) => {
         next(err)
     }
 }
+
+// exports.createTeamMember = async (req, res, next) => {
+//     try {
+//         const user = await User.create({
+//             ...req.body,
+//             companyID: req.user.companyID
+//         })
+//         res.status(201).send({
+//             status: 'success',
+//             data: {
+//                 user: user
+//             }
+//         })
+//     }
+//     catch (err) {
+//         next(err)
+//     }
+// }
