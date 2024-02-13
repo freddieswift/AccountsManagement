@@ -1,7 +1,5 @@
 const CustomError = require('../error/customError')
 const User = require('../models/userModel')
-const Company = require('../models/companyModel')
-const factory = require('../controllers/factoryController')
 
 exports.isLoggedIn = async (req, res, next) => {
     if (!req.session.username) {

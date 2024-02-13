@@ -27,7 +27,8 @@ exports.createNewUser = async (req, res, next) => {
 exports.createTeamMember = async (req, res, next) => {
     try {
         const user = await User.create({
-            ...req.body
+            ...req.body,
+            companyID: req.user.companyID
         })
         res.status(201).send({
             status: 'success',
