@@ -1,5 +1,7 @@
 const CustomError = require('../error/customError')
 const User = require('../models/userModel')
+const Company = require('../models/companyModel')
+const factory = require('../controllers/factoryController')
 
 exports.isLoggedIn = async (req, res, next) => {
     if (!req.session.username) {
@@ -7,6 +9,22 @@ exports.isLoggedIn = async (req, res, next) => {
     }
     const user = await User.findOne({ username: req.session.username })
     req.user = user
+    next()
+}
+
+exports.restrictTo = (role) => {
+    return (req, res, next) => {
+        if (role !== req.user.role) {
+            return next(new CustomError("you do not have permission to perform this action", 403))
+        }
+        next()
+    }
+}
+
+exports.hasCompany = (req, res, next) => {
+    if (!req.user.companyID) {
+        return next(new CustomError('You must create a company before accessing this feature', 403))
+    }
     next()
 }
 
@@ -48,17 +66,17 @@ exports.logout = (req, res, next) => {
     })
 }
 
-exports.createUser = async (req, res, next) => {
-    try {
-        const user = await User.create(req.body)
-        res.status(201).json({
-            status: "success",
-            data: {
-                user
-            }
-        })
-    }
-    catch (err) {
-        next(err)
-    }
-}
+
+
+// createAdmin = async (req, res, next) => {
+//     //TODO if company name and another field i.e. username is missing
+//     //the error only reports that company name is missing
+//     // as error is thrown when company is created and doesnt even try
+//     //to create the user
+//     const company = await Company.create({ name: req.body.companyName })
+//     const user = await User.create({
+//         ...req.body,
+//         companyID: company._id
+//     })
+//     return user
+// }

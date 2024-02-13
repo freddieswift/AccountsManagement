@@ -4,6 +4,7 @@ const MongoStore = require('connect-mongo')
 
 const viewRouter = require('./routes/viewRoutes')
 const userRouter = require('./routes/userRoutes')
+const companyRouter = require('./routes/companyRoutes')
 const errorHandler = require('./error/errorHandler')
 
 const app = express()
@@ -28,6 +29,7 @@ app.use(session({
 //ROUTES
 app.use(viewRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/company', companyRouter)
 
 //ERROR HANDLER
 app.use(errorHandler)
