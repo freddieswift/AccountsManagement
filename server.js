@@ -13,6 +13,6 @@ process.on('uncaughtException', err => {
 
 const port = process.env.PORT || 3000
 const server = app.listen(port, (req, res) => {
-    console.log('server up')
+    console.log(`server up on port ${port}`)
 })
 
