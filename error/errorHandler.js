@@ -22,13 +22,12 @@ const handleWebsiteError = (err, res) => {
 }
 
 module.exports = errorHandler = (err, req, res, next) => {
-    console.log(err)
-
     let error
     if (err instanceof CustomError) {
         error = err
     }
     else {
+        console.log(err)
         error = new CustomError('Something went very wrong...', 500)
 
         if (err.name === 'ValidationError') {
