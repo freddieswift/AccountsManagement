@@ -34,6 +34,9 @@ module.exports = errorHandler = (err, req, res, next) => {
         if (err.name === 'ValidationError') {
             error = new CustomError('Please provide the missing values <INSERT HERE>', 400)
         }
+        if (err.name === 'CastError') {
+            error = new CustomError('Cannot find <SOMETHING> with that <SOMETHING>', 404)
+        }
         if (err.code === 11000) {
             error = new CustomError('There is is already a <SOMETHING> with this <SOMETHING>, please try another one', 400)
         }
