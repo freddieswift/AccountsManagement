@@ -27,17 +27,18 @@ module.exports = errorHandler = (err, req, res, next) => {
         error = err
     }
     else {
-        console.log(err)
-        error = new CustomError('Something went very wrong...', 500)
-
         if (err.name === 'ValidationError') {
             error = new CustomError('Please provide the missing values <INSERT HERE>', 400)
         }
-        if (err.name === 'CastError') {
+        else if (err.name === 'CastError') {
             error = new CustomError('Cannot find <SOMETHING> with that <SOMETHING>', 404)
         }
-        if (err.code === 11000) {
+        else if (err.code === 11000) {
             error = new CustomError('There is is already a <SOMETHING> with this <SOMETHING>, please try another one', 400)
+        }
+        else {
+            console.log(err)
+            new CustomError('Something went very wrong...', 500)
         }
     }
 
