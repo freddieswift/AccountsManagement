@@ -20,7 +20,7 @@ exports.restrictTo = (role) => {
 }
 
 exports.hasCompany = (req, res, next) => {
-    if (!req.user.companyID) {
+    if (!req.user.company) {
         return next(new CustomError('You must create a company before accessing this feature', 403))
     }
     next()
@@ -74,7 +74,7 @@ exports.logout = (req, res, next) => {
 //     const company = await Company.create({ name: req.body.companyName })
 //     const user = await User.create({
 //         ...req.body,
-//         companyID: company._id
+//         company: company._id
 //     })
 //     return user
 // }

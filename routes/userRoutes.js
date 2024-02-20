@@ -15,6 +15,5 @@ router.route('/invite').post(
     userController.inviteTeamMember
 )
 router.route('/register/:inviteToken').post(userController.register)
-//router.route('/register/:companyID/:inviteToken').post(userController.register)
 
 module.exports = router

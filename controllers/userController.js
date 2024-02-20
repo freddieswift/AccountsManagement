@@ -32,7 +32,7 @@ exports.inviteTeamMember = async (req, res, next) => {
         const userCheck = await User.find({ email: req.body.email })
         if (userCheck.length !== 0) return next(new CustomError('there is already a user with this email', 400))
 
-        const company = await Company.findById(req.user.companyID)
+        const company = await Company.findById(req.user.company)
         const inviteToken = await company.generateInvite(req.body.email, next)
 
         res.status(200).send({
@@ -57,7 +57,7 @@ exports.register = async (req, res, next) => {
         const user = await User.create({
             username: req.body.username,
             password: req.body.password,
-            companyID: company._id,
+            company: company._id,
             email: matchedInvite.email
         })
 

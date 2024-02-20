@@ -22,7 +22,7 @@ const userSchema = new mongoose.Schema({
         default: 'user',
         enum: ['user', 'admin']
     },
-    companyID: {
+    company: {
         defualt: null,
         type: mongoose.Schema.ObjectId,
         ref: 'Company'
