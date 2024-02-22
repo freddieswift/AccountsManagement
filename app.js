@@ -27,7 +27,7 @@ app.use(session({
     name: 'sessionID',
     store: MongoStore.create({
         clientPromise: clientPromise,
-        ttl: 10 // 1 day
+        ttl: 1 * 24 * 60 * 60 // 1 day
     })
 }))
 
