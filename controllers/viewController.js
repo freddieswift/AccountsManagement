@@ -8,7 +8,7 @@ exports.getHomepage = (req, res, next) => {
 
 exports.login = (req, res, next) => {
     if (req.session.username) {
-        res.redirect('/')
+        return res.redirect('/')
     }
     res.status(200).render('login', {
         title: 'Login'
