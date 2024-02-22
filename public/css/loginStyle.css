@@ -1,0 +1,41 @@
+.loginBoxContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212738;
+  color: #212738;
+}
+
+.loginForm {
+  width: 20rem;
+  background-color: #f97068;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.loginBoxTitle {
+  margin: 0;
+}
+
+.loginForm input {
+  border-radius: 1rem;
+  border: none;
+  background-color: #edf2ef;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.loginForm button {
+  background-color: #212738;
+  color: #edf2ef;
+}
+
+.loginForm button:hover {
+  background-color: #2f374e;
+}

@@ -1,3 +1,11 @@
-exports.getHomepage = (req, res) => {
-    res.send(`hello ${req.user.username}, you are ${req.user.age} years old`)
+exports.getHomepage = (req, res, next) => {
+    res.status(200).render('base', {
+        title: 'homepage',
+        tour: 'The forest hiker',
+        user: 'john'
+    })
+}
+
+exports.login = (req, res, next) => {
+    res.status(200).render('login')
 }

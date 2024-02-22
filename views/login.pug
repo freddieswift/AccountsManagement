@@ -1,0 +1,16 @@
+extends base
+
+block content
+    .loginBoxContainer
+        form.loginForm
+            .formGroup
+            h1.loginBoxTitle Login
+            .formGroup
+                label(for='username') username
+                input(type='text', id='username')
+            .formGroup
+                label(for='password') password
+                input(type='password', id='password')
+            .formGroup
+                button(type='submit') Login
+        

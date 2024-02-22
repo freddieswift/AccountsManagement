@@ -1,3 +1,5 @@
+const path = require('path')
+
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
@@ -9,7 +11,10 @@ const errorHandler = require('./error/errorHandler')
 
 const app = express()
 
-app.use(express.json())
+//SET UP VIEW ENGINE
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'views'))
+app.use(express.static(path.join(__dirname, 'public')));
 
 //DB CONNECTION
 const clientPromise = require('./db/connectDatabase')
@@ -22,9 +27,11 @@ app.use(session({
     name: 'sessionID',
     store: MongoStore.create({
         clientPromise: clientPromise,
-        ttl: 1 * 24 * 60 * 60 // 1 day
+        ttl: 10 // 1 day
     })
 }))
+
+app.use(express.json())
 
 //ROUTES
 app.use(viewRouter)
