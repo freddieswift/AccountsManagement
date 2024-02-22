@@ -14,3 +14,9 @@ exports.login = (req, res, next) => {
         title: 'Login'
     })
 }
+
+exports.createCompany = (req, res, next) => {
+    res.status(200).render('createCompany', {
+        title: 'Create Company'
+    })
+}

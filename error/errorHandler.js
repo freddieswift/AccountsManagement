@@ -8,9 +8,10 @@ const handleAPIError = (err, res) => {
 }
 
 const handleWebsiteError = (err, res) => {
-    if (err.statusCode === 401) {
-        // TODO if 
-        return res.redirect('/login')
+    if (err.statusCode === 401) return res.redirect('/login')
+
+    if (err.message === 'You must create a company before accessing this feature') {
+        return res.redirect('/createCompany')
     }
     return res.status(err.statusCode).send({
         page: "error",
