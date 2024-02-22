@@ -7,5 +7,10 @@ exports.getHomepage = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-    res.status(200).render('login')
+    if (req.session.username) {
+        res.redirect('/')
+    }
+    res.status(200).render('login', {
+        title: 'Login'
+    })
 }
