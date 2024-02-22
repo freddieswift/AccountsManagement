@@ -1,6 +1,7 @@
+const message = document.querySelector('.message')
 export const login = async (username, password) => {
     try {
-        const res = await axios({
+        await axios({
             method: 'POST',
             url: '/api/v1/users/login',
             data: {
@@ -8,10 +9,10 @@ export const login = async (username, password) => {
                 password
             }
         })
-        console.log(res)
         location.assign('/')
     }
     catch (err) {
-        console.log(err.response.data)
+        message.style.display = 'block'
+        message.innerHTML = err.response.data.message
     }
 }

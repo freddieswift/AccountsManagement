@@ -39,3 +39,8 @@
 .loginForm button:hover {
   background-color: #2f374e;
 }
+
+.message {
+  display: none;
+  text-align: center;
+}
