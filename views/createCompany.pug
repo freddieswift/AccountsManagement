@@ -1,4 +1,13 @@
 extends base
 
 block content
-    h1 createCompany
+    .formContainer
+        form.createCompanyForm
+            .formGroup
+            h1.formTitle Create Company
+            p.formMessage
+            .formGroup
+                label(for='name') Company Name
+                input(type='text', id='name')
+            .formGroup
+                button(type='submit') Create

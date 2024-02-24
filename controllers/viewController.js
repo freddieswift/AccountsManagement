@@ -16,6 +16,9 @@ exports.login = (req, res, next) => {
 }
 
 exports.createCompany = (req, res, next) => {
+    if (req.user.company) {
+        return res.redirect('/')
+    }
     res.status(200).render('createCompany', {
         title: 'Create Company'
     })

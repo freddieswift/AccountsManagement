@@ -34,9 +34,10 @@ app.use(session({
 app.use(express.json())
 
 //ROUTES
+app.use('/', viewRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/company', companyRouter)
-app.use('/', viewRouter)
+
 
 //ERROR HANDLER
 app.use(errorHandler)

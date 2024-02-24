@@ -1,18 +1,18 @@
 const message = document.querySelector('.formMessage')
 
-export const login = async (username, password) => {
+export const createCompany = async (name) => {
     try {
         await axios({
             method: 'POST',
-            url: '/api/v1/users/login',
+            url: '/api/v1/company',
             data: {
-                username,
-                password
+                name
             }
         })
         location.assign('/')
     }
     catch (err) {
+        console.log(err)
         message.style.display = 'block'
         message.innerHTML = err.response.data.message
     }
