@@ -1,4 +1,4 @@
-const message = document.querySelector('.formMessage')
+import { displayAlert } from "./alert.js"
 
 export const signUp = async (email, username, password) => {
     try {
@@ -14,7 +14,6 @@ export const signUp = async (email, username, password) => {
         location.assign('/createCompany')
     }
     catch (err) {
-        message.style.display = 'block'
-        message.innerHTML = err.response.data.message
+        displayAlert(err.response.data.message)
     }
 }

@@ -3,11 +3,11 @@ html
     head
         title Accounts | #{title}
         link(rel='stylesheet' href='css/style.css')
-        link(rel='stylesheet' href='css/formStyle.css')
         link(rel='preconnect' href='https://fonts.googleapis.com')
         link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin)
         link(href='https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap' rel='stylesheet')
     body
+        include _alert
         block content
         script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
         script(type='module' src='/js/index.js')

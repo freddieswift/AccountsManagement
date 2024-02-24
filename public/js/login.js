@@ -1,4 +1,4 @@
-const message = document.querySelector('.formMessage')
+import { displayAlert } from "./alert.js"
 
 export const login = async (username, password) => {
     try {
@@ -13,7 +13,6 @@ export const login = async (username, password) => {
         location.assign('/')
     }
     catch (err) {
-        message.style.display = 'block'
-        message.innerHTML = err.response.data.message
+        displayAlert(err.response.data.message)
     }
 }

@@ -1,4 +1,4 @@
-const message = document.querySelector('.formMessage')
+import { displayAlert } from "./alert.js"
 
 export const createCompany = async (name) => {
     try {
@@ -12,8 +12,6 @@ export const createCompany = async (name) => {
         location.assign('/')
     }
     catch (err) {
-        console.log(err)
-        message.style.display = 'block'
-        message.innerHTML = err.response.data.message
+        displayAlert(err.response.data.message)
     }
 }

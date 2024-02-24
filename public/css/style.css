@@ -36,3 +36,74 @@ a:visited {
   text-decoration: none;
   color: #212738;
 }
+
+/* ALERT STYLES --------------------------------------- */
+
+.alert {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 2rem;
+  background-color: #f97068;
+}
+
+.active {
+  display: flex;
+}
+
+/* FORM STYLES --------------------------------------- */
+
+.formContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #212738;
+  color: #212738;
+}
+
+form {
+  width: 22rem;
+  background-color: #f97068;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.formTitle {
+  margin: 0;
+}
+
+form input {
+  border-radius: 1rem;
+  width: 100%;
+  border: none;
+  background-color: #edf2ef;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+form label {
+  margin: 1rem;
+}
+
+form button {
+  background-color: #212738;
+  color: #edf2ef;
+}
+
+form button:hover {
+  background-color: #2f374e;
+}
+
+.formMessage {
+  display: none;
+  text-align: center;
+}
