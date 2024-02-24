@@ -6,6 +6,7 @@ const authController = require('../controllers/authController')
 const router = express.Router()
 
 router.route('/login').get(viewController.login)
+router.route('/signup').get(viewController.signup)
 router.route('/')
     .get(
         authController.isLoggedIn,

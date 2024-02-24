@@ -2,10 +2,13 @@ extends base
 
 block content
     .formContainer
-        form.loginForm
+        form.signupForm
             .formGroup
-            h1.formTitle Login
+            h1.formTitle Sign Up
             p.formMessage
+            .formGroup
+                label(for='username') email
+                input(type='email', id='email')
             .formGroup
                 label(for='username') username
                 input(type='text', id='username')
@@ -13,6 +16,5 @@ block content
                 label(for='password') password
                 input(type='password', id='password')
             .formGroup
-                button(type='submit') Login
-            a(href='/signup') Sign Up
-        
+                button(type='submit') Sign Up
+            a.loginSignupLink(href='/login') Login

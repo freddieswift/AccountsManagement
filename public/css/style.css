@@ -1,5 +1,5 @@
 /* 
-#212738
+212738
 #F97068
 #D1D646
 #EDF2EF
@@ -26,4 +26,13 @@ button {
   margin: 0.8rem;
   border-radius: 1rem;
   width: 80%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #212738;
 }

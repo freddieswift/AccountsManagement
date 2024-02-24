@@ -15,6 +15,15 @@ exports.login = (req, res, next) => {
     })
 }
 
+exports.signup = (req, res, next) => {
+    if (req.session.username) {
+        return res.redirect('/')
+    }
+    res.status(200).render('signup', {
+        title: 'Sign Up'
+    })
+}
+
 exports.createCompany = (req, res, next) => {
     if (req.user.company) {
         return res.redirect('/')
