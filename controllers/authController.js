@@ -35,7 +35,7 @@ exports.login = async (req, res, next) => {
         const user = await User.findOne({ username: req.body.username }).select('+password')
         if (!user) return next(new CustomError('invalid credentials', 401))
         await user.checkPassword(req.body.password)
-        req.session.username = username
+        req.session.username = user.username
         res.status(200).send({
             status: "success",
             data: {
