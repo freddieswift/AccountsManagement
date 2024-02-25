@@ -27,24 +27,15 @@ exports.hasCompany = (req, res, next) => {
 }
 
 exports.login = async (req, res, next) => {
-    const username = req.body.username
-    const password = req.body.password
-
-    if (!username || !password) {
+    if (!req.body.username || !req.body.password) {
         return next(new CustomError('please provide username and password', 400))
     }
 
     try {
-        const user = await User.findOne({ username: username }).select('+password')
-
+        const user = await User.findOne({ username: req.body.username }).select('+password')
         if (!user) return next(new CustomError('invalid credentials', 401))
-
-        if (user.password !== password) return next(new CustomError('invalid credentials', 401))
-
-        user.password = undefined
-
+        await user.checkPassword(req.body.password)
         req.session.username = username
-
         res.status(200).send({
             status: "success",
             data: {

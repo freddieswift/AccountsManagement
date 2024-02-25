@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+
+const CustomError = require('../error/customError')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -28,6 +31,20 @@ const userSchema = new mongoose.Schema({
         ref: 'Company'
     }
 })
+
+//hash password
+userSchema.pre('save', async function (next) {
+    this.password = await bcrypt.hash(this.password, 10)
+    next()
+})
+
+userSchema.methods.checkPassword = async function (passwordToCompare) {
+    console.log(passwordToCompare)
+    console.log(this)
+    if (!await bcrypt.compare(passwordToCompare, this.password)) {
+        throw new CustomError('invalid credentials', 400)
+    }
+}
 
 const User = mongoose.model('User', userSchema)
 
