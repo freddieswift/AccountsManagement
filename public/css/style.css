@@ -107,3 +107,27 @@ form button:hover {
   display: none;
   text-align: center;
 }
+
+/* NAVBAR STYLES --------------------------------------- */
+
+.navbar {
+  list-style-type: none;
+  background-color: #212738;
+  overflow: hidden;
+}
+
+.navbarListItem {
+  float: right;
+  border-left: 1px solid #212738;
+}
+
+.navbarLink {
+  display: block;
+  padding: 8px;
+  background-color: #f97068;
+  padding: 14px 16px;
+}
+
+.navbarLink:hover {
+  background-color: #da605a;
+}
