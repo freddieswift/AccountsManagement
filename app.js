@@ -7,6 +7,7 @@ const MongoStore = require('connect-mongo')
 const viewRouter = require('./routes/viewRoutes')
 const userRouter = require('./routes/userRoutes')
 const companyRouter = require('./routes/companyRoutes')
+const yearRouter = require('./routes/yearRoutes')
 const errorHandler = require('./error/errorHandler')
 
 const app = express()
@@ -37,6 +38,7 @@ app.use(express.json())
 app.use('/', viewRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/company', companyRouter)
+app.use('/api/v1/year', yearRouter)
 
 
 //ERROR HANDLER
