@@ -30,7 +30,6 @@ button {
   font-size: 1.2rem;
   margin: 0.8rem;
   border-radius: 1rem;
-  width: 80%;
 }
 
 a {
@@ -102,6 +101,7 @@ form label {
 form button {
   background-color: #212738;
   color: #edf2ef;
+  width: 80%;
 }
 
 form button:hover {
@@ -146,7 +146,49 @@ nav {
 
 /* HOMEPAGE STYLES --------------------------------------- */
 
-.homepageContainer {
+.homepageContentContainer {
   background-color: #edf2ef;
   height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.homepageGridBox {
+  background-color: #212738;
+  border-radius: 1rem;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepageGridBox button {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f97068;
+}
+
+.homepageGridBox button:hover {
+  background-color: #da605a;
+}
+
+.yearTable {
+  background-color: #f97068;
+  margin: 0 1rem;
+  border-radius: 1rem;
+}
+
+.yearRow:hover {
+  background-color: #da605a;
+}
+
+table,
+th,
+td {
+  border: 1px solid #212738;
+  border-collapse: collapse;
+}
+
+td {
+  text-align: center;
+  padding: 1rem 0;
 }

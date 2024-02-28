@@ -2,4 +2,23 @@ extends base
 
 block content
     include _navbar
-    div.homepageContainer
+    div.homepageContentContainer
+        div.homepageGridBox
+            button Add Year
+            table.yearTable
+                tr.headingRow
+                    th Year
+                    th Turnover
+                    th Costs of Sales
+                    th Overheads
+                    th Operating Income
+                each year in years
+                    tr.yearRow
+                        td #{year.name}
+                        td £#{year.turnover}
+                        td £#{year.totalCOS}
+                        td £#{year.totalOH}
+                        td £#{year.totalOI}
+                    
+
+        

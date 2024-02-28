@@ -11,10 +11,5 @@ router.route('/')
         authController.hasCompany,
         yearController.createYear
     )
-    .get(
-        authController.isLoggedIn,
-        authController.hasCompany,
-        yearController.getAllYears
-    )
 
 module.exports = router

@@ -1,4 +1,3 @@
-const CustomError = require('../error/customError')
 const Year = require('../models/yearModel')
 
 exports.createYear = async (req, res, next) => {
@@ -13,16 +12,6 @@ exports.createYear = async (req, res, next) => {
                 year
             }
         })
-    }
-    catch (err) {
-        next(err)
-    }
-}
-
-exports.getAllYears = async (req, res, next) => {
-    try {
-        const allYears = await Year.find({ company: req.user.company })
-        res.send(allYears)
     }
     catch (err) {
         next(err)
