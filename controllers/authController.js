@@ -19,10 +19,11 @@ exports.restrictTo = (role) => {
     }
 }
 
-exports.hasCompany = (req, res, next) => {
+exports.hasCompany = async (req, res, next) => {
     if (!req.user.company) {
         return next(new CustomError('You must create a company before accessing this feature', 403))
     }
+    req.user = await req.user.populate('company')
     next()
 }
 
@@ -54,18 +55,3 @@ exports.logout = (req, res, next) => {
         res.send()
     })
 }
-
-
-
-// createAdmin = async (req, res, next) => {
-//     //TODO if company name and another field i.e. username is missing
-//     //the error only reports that company name is missing
-//     // as error is thrown when company is created and doesnt even try
-//     //to create the user
-//     const company = await Company.create({ name: req.body.companyName })
-//     const user = await User.create({
-//         ...req.body,
-//         company: company._id
-//     })
-//     return user
-// }

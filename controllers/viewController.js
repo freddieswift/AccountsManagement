@@ -1,8 +1,7 @@
 exports.getHomepage = (req, res, next) => {
     res.status(200).render('homepage', {
         title: 'Homepage',
-        tour: 'The forest hiker',
-        user: 'john'
+        companyName: req.user.company.name
     })
 }
 
