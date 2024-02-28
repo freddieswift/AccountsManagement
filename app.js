@@ -3,6 +3,7 @@ const path = require('path')
 const express = require('express')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const mongoose = require('mongoose')
 
 const viewRouter = require('./routes/viewRoutes')
 const userRouter = require('./routes/userRoutes')
@@ -18,17 +19,19 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')));
 
 //DB CONNECTION
-const clientPromise = require('./db/connectDatabase')
+require('./db/connectDatabase')
 
 //SESSION SET UP
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     name: 'sessionID',
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24
+    },
     store: MongoStore.create({
-        clientPromise: clientPromise,
-        ttl: 1 * 24 * 60 * 60 // 1 day
+        mongoUrl: mongoose.connections[0]._connectionString
     })
 }))
 
