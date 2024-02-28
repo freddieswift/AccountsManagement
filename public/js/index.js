@@ -1,10 +1,11 @@
-import { login } from './login.js'
+import { login, logout } from './login.js'
 import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
 const signupForm = document.querySelector('.signupForm')
+const logoutButton = document.querySelector('.logoutButton')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -30,5 +31,12 @@ if (signupForm) {
         const username = document.getElementById('username').value
         const password = document.getElementById('password').value
         signUp(email, username, password)
+    })
+}
+
+if (logoutButton) {
+    logoutButton.addEventListener('click', e => {
+        e.preventDefault()
+        logout()
     })
 }

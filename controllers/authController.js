@@ -49,9 +49,13 @@ exports.login = async (req, res, next) => {
     }
 }
 
-exports.logout = (req, res, next) => {
-    req.session.destroy(err => {
+exports.logout = async (req, res, next) => {
+    try {
+        await req.session.destroy()
         res.clearCookie('sessionID', { path: '/' })
         res.send()
-    })
+    }
+    catch (err) {
+        next(err)
+    }
 }
