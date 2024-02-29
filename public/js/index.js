@@ -1,11 +1,13 @@
 import { login, logout } from './login.js'
 import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
+import { togglePopUpForm } from './showPopUpForm.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
 const signupForm = document.querySelector('.signupForm')
 const logoutButton = document.querySelector('.logoutButton')
+const addYearForm = document.querySelector('.addYearForm')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -38,5 +40,16 @@ if (logoutButton) {
     logoutButton.addEventListener('click', e => {
         e.preventDefault()
         logout()
+    })
+}
+
+if (addYearForm) {
+    const addYearButton = document.querySelector('.addYearButton')
+    addYearButton.addEventListener('click', e => {
+        togglePopUpForm(addYearForm)
+    })
+    const cancelButton = addYearForm.getElementsByClassName('cancelButton')
+    cancelButton[0].addEventListener('click', e => {
+        togglePopUpForm(addYearForm)
     })
 }

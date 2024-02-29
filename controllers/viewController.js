@@ -5,7 +5,7 @@ exports.getHomepage = async (req, res, next) => {
         const allYears = await Year.find({ company: req.user.company })
         res.status(200).render('homepage', {
             title: 'Homepage',
-            companyName: req.user.company.name,
+            user: req.user,
             years: allYears
         })
     }

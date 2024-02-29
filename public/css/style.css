@@ -192,3 +192,23 @@ td {
   text-align: center;
   padding: 1rem 0;
 }
+
+/* ADD YEAR MODAL STYLES --------------------------------------- */
+
+.addYearForm {
+  display: none;
+  border: solid 1px #edf2ef;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.showPopUpForm {
+  display: flex;
+}
+
+.cancelButton {
+  margin-top: 0;
+}
