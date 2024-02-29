@@ -2,6 +2,7 @@ import { login, logout } from './login.js'
 import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 import { togglePopUpForm } from './showPopUpForm.js'
+import { addYear } from './addYear.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
@@ -51,5 +52,10 @@ if (addYearForm) {
     const cancelButton = addYearForm.getElementsByClassName('cancelButton')
     cancelButton[0].addEventListener('click', e => {
         togglePopUpForm(addYearForm)
+    })
+    addYearForm.addEventListener('submit', e => {
+        e.preventDefault()
+        const yearName = document.getElementById('yearName').value
+        addYear(yearName)
     })
 }
