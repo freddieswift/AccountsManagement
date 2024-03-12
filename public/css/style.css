@@ -113,6 +113,24 @@ form button:hover {
   text-align: center;
 }
 
+.popUpForm {
+  display: none;
+  border: solid 1px #edf2ef;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.showPopUpForm {
+  display: flex;
+}
+
+.cancelButton {
+  margin-top: 0;
+}
+
 /* NAVBAR STYLES --------------------------------------- */
 
 nav {
@@ -144,32 +162,33 @@ nav {
   background-color: #da605a;
 }
 
-/* HOMEPAGE STYLES --------------------------------------- */
+/* PAGE CONTAINER STYLES --------------------------------------- */
 
-.homepageContentContainer {
+.pageContentContainer {
   background-color: #edf2ef;
-  height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  height: 100%;
+  padding: 1rem;
 }
 
-.homepageGridBox {
+.pageContent {
   background-color: #212738;
   border-radius: 1rem;
-  margin: 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.homepageGridBox button {
+.pageContent button {
   margin-left: auto;
   margin-right: auto;
   background-color: #f97068;
 }
 
-.homepageGridBox button:hover {
+.pageContent button:hover {
   background-color: #da605a;
 }
+
+/* HOMEPAGE STYLES --------------------------------------- */
 
 .yearTable {
   background-color: #f97068;
@@ -193,22 +212,8 @@ td {
   padding: 1rem 0;
 }
 
-/* ADD YEAR MODAL STYLES --------------------------------------- */
+/* ADMIN PAGE STYLES --------------------------------------- */
 
-.addYearForm {
-  display: none;
-  border: solid 1px #edf2ef;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.showPopUpForm {
-  display: flex;
-}
-
-.cancelButton {
-  margin-top: 0;
+.adminContentContainer {
+  grid-template-columns: 1fr 1fr;
 }

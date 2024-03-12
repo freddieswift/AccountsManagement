@@ -35,8 +35,9 @@ exports.inviteTeamMember = async (req, res, next) => {
         const company = await Company.findById(req.user.company)
         const inviteToken = await company.generateInvite(req.body.email, next)
 
-        res.status(200).send({
+        res.status(201).send({
             status: 'success',
+            message: 'user invited created',
             data: {
                 inviteToken
             }

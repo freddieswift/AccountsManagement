@@ -11,12 +11,19 @@ router.route('/')
     .get(
         authController.isLoggedIn,
         authController.hasCompany,
-        viewController.getHomepage)
+        viewController.homepage)
 router.route('/createCompany')
     .get(
         authController.isLoggedIn,
         authController.restrictTo('admin'),
         viewController.createCompany,
+    )
+router.route('/admin')
+    .get(
+        authController.isLoggedIn,
+        authController.hasCompany,
+        authController.restrictTo('admin'),
+        viewController.admin,
     )
 
 module.exports = router

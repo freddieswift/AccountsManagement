@@ -3,12 +3,14 @@ import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 import { togglePopUpForm } from './showPopUpForm.js'
 import { addYear } from './addYear.js'
+import { inviteUser } from './inviteUser.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
 const signupForm = document.querySelector('.signupForm')
 const logoutButton = document.querySelector('.logoutButton')
-const addYearForm = document.querySelector('.addYearForm')
+const addYearButton = document.querySelector('.addYearButton')
+const inviteUserButton = document.querySelector('.inviteUserButton')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -44,8 +46,8 @@ if (logoutButton) {
     })
 }
 
-if (addYearForm) {
-    const addYearButton = document.querySelector('.addYearButton')
+if (addYearButton) {
+    const addYearForm = document.getElementById('addYearForm')
     addYearButton.addEventListener('click', e => {
         togglePopUpForm(addYearForm)
     })
@@ -57,5 +59,21 @@ if (addYearForm) {
         e.preventDefault()
         const yearName = document.getElementById('yearName').value
         addYear(yearName)
+    })
+}
+
+if (inviteUserButton) {
+    const inviteUserForm = document.getElementById('inviteUserForm')
+    inviteUserButton.addEventListener('click', e => {
+        togglePopUpForm(inviteUserForm)
+    })
+    const cancelButton = inviteUserForm.getElementsByClassName('cancelButton')
+    cancelButton[0].addEventListener('click', e => {
+        togglePopUpForm(inviteUserForm)
+    })
+    inviteUserForm.addEventListener('submit', e => {
+        e.preventDefault()
+        const userEmail = document.getElementById('userEmail').value
+        inviteUser(userEmail)
     })
 }

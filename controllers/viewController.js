@@ -1,6 +1,6 @@
 const Year = require('../models/yearModel')
 
-exports.getHomepage = async (req, res, next) => {
+exports.homepage = async (req, res, next) => {
     try {
         const allYears = await Year.find({ company: req.user.company })
         res.status(200).render('homepage', {
@@ -13,6 +13,18 @@ exports.getHomepage = async (req, res, next) => {
         next(err)
     }
 
+}
+
+exports.admin = async (req, res, next) => {
+    try {
+        res.status(200).render('admin', {
+            title: 'Admin',
+            user: req.user
+        })
+    }
+    catch (err) {
+        next(err)
+    }
 }
 
 exports.login = (req, res, next) => {

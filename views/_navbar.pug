@@ -5,7 +5,10 @@ nav
             a.navbarLink(href="#") Logout
         li.navbarListItem
             a.navbarLink(href="#") Me
+        if user.role === 'admin'
+            li.navbarListItem
+                a.navbarLink(href="/admin") Admin
         li.navbarListItem
-            a.navbarLink(href="#") Home
+            a.navbarLink(href="/") Home
     
     
