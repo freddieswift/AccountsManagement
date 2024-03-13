@@ -13,9 +13,11 @@ const handleWebsiteError = (err, res) => {
     if (err.message === 'You must create a company before accessing this feature') {
         return res.redirect('/createCompany')
     }
-    return res.status(err.statusCode).send({
-        page: "error",
-        message: err.message
+
+    return res.render('errorpage', {
+        title: 'Error',
+        message: err.message,
+        code: err.statusCode
     })
 }
 

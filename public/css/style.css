@@ -43,6 +43,27 @@ a:visited {
 
 /* ALERT STYLES --------------------------------------- */
 
+.errorPageContainer {
+  background-color: #212738;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #edf2ef;
+}
+
+.errorCode {
+  font-size: 5rem;
+}
+
+.dogImage {
+  margin-top: 1rem;
+  height: 400px;
+}
+
+/* ALERT STYLES --------------------------------------- */
+
 .alert {
   display: none;
   align-items: center;
