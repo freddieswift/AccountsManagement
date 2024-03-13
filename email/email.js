@@ -15,11 +15,11 @@ const sendEmail = async (to, html, subject) => {
     }
     else {
         transporterOptions = {
-            host: "sandbox.smtp.mailtrap.io",
-            port: 2525,
+            host: process.env.MAILTRAP_HOST,
+            port: process.env.MAILTRAP_PORT,
             auth: {
-                user: "536692e49983d4",
-                pass: "feae40365de7f4"
+                user: process.env.MAILTRAP_USERNAME,
+                pass: process.env.MAILTRAP_PASSWORD
             }
         }
     }
