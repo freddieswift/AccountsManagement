@@ -36,7 +36,7 @@ module.exports = errorHandler = (err, req, res, next) => {
         }
         else {
             console.log(err)
-            new CustomError('Something went very wrong...', 500)
+            error = new CustomError('Something went very wrong...', 500)
         }
     }
 

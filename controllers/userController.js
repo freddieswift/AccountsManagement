@@ -2,6 +2,8 @@ const User = require('../models/userModel')
 const Company = require('../models/companyModel')
 const CustomError = require('../error/customError')
 
+const { sendInviteEmail } = require('../email/email')
+
 exports.createNewUser = async (req, res, next) => {
     //if user is already logged in, they already have an account 
     // and therefor need to use /team
@@ -14,6 +16,7 @@ exports.createNewUser = async (req, res, next) => {
         const user = await User.create({
             ...req.body
         })
+
         res.status(201).send({
             status: 'success',
             data: {
@@ -34,6 +37,10 @@ exports.inviteTeamMember = async (req, res, next) => {
 
         const company = await Company.findById(req.user.company)
         const inviteToken = await company.generateInvite(req.body.email, next)
+
+        const inviteURL = `${req.protocol}://${req.get('host')}/register/${inviteToken}`
+
+        await sendInviteEmail(req.body.email, inviteURL)
 
         res.status(201).send({
             status: 'success',
