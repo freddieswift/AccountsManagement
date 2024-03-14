@@ -46,3 +46,9 @@ exports.sendInviteEmail = async (to, inviteURL) => {
     const subject = 'You have been invited to use Accounts!'
     await sendEmail(to, html, subject)
 }
+
+exports.sendWelcomeEmail = async (to) => {
+    const html = `<h1>Test</h1>`
+    const subject = 'Test'
+    await sendEmail(to, html, subject)
+}

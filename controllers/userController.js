@@ -2,7 +2,7 @@ const User = require('../models/userModel')
 const Company = require('../models/companyModel')
 const CustomError = require('../error/customError')
 
-const { sendInviteEmail } = require('../email/email')
+const { sendInviteEmail, sendWelcomeEmail } = require('../email/email')
 
 exports.createNewUser = async (req, res, next) => {
     //if user is already logged in, they already have an account 
@@ -16,7 +16,7 @@ exports.createNewUser = async (req, res, next) => {
         const user = await User.create({
             ...req.body
         })
-
+        await sendWelcomeEmail(user.email)
         res.status(201).send({
             status: 'success',
             data: {
