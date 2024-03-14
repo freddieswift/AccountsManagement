@@ -42,13 +42,13 @@ const sendEmail = async (to, html, subject) => {
 }
 
 exports.sendInviteEmail = async (to, inviteURL) => {
-    const html = `<h1>You have been invited to use Accounts</h1><p>Please use the following link to set up your account.</p><a href='${inviteURL}'>Click Here!</a>`
-    const subject = 'You have been invited to use Accounts!'
+    const html = `<h1>You have been invited to use Accounts Management</h1><p>Please use the following link to set up your account.</p><a href='${inviteURL}'>Click Here!</a>`
+    const subject = 'You have been invited to use Accounts Management!'
     await sendEmail(to, html, subject)
 }
 
 exports.sendWelcomeEmail = async (to) => {
-    const html = `<h1>Test</h1>`
-    const subject = 'Test'
+    const html = `<h1>Welcome to Accounts Management</h1>`
+    const subject = 'Welcome to Accounts Management'
     await sendEmail(to, html, subject)
 }

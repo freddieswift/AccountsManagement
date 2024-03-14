@@ -238,3 +238,30 @@ td {
 .adminContentContainer {
   grid-template-columns: 1fr 1fr;
 }
+
+.invitationCard {
+  background-color: #f97068;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invitationCard p {
+  display: inline;
+}
+
+.invitationCard button {
+  margin: 0;
+  background-color: #212738;
+  color: #edf2ef;
+  margin-left: 0.6rem;
+}
+
+.invitationCard button:hover {
+  background-color: #2f374e;
+}

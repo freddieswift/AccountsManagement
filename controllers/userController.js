@@ -29,6 +29,38 @@ exports.createNewUser = async (req, res, next) => {
     }
 }
 
+exports.register = async (req, res, next) => {
+    try {
+        const company = await Company.findOne({ "invitations.inviteToken": req.params.inviteToken }).select('+invitations')
+        if (!company) return next(new CustomError('this invite link is not valid', 400))
+
+        const matchedInvite = company.invitations.find(invite => invite.inviteToken === req.params.inviteToken)
+
+        const user = await User.create({
+            username: req.body.username,
+            password: req.body.password,
+            company: company._id,
+            email: matchedInvite.email
+        })
+
+        req.session.username = user.username
+
+        company.invitations = company.invitations.filter(invite => invite.inviteToken !== matchedInvite.inviteToken)
+
+        await company.save()
+
+        res.status(201).send({
+            status: 'success',
+            data: {
+                user
+            }
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
+
 exports.inviteTeamMember = async (req, res, next) => {
     try {
         //check if there is already a user registered with that email
@@ -55,31 +87,17 @@ exports.inviteTeamMember = async (req, res, next) => {
     }
 }
 
-exports.register = async (req, res, next) => {
+exports.deleteInvite = async (req, res, next) => {
+    const inviteID = req.params.inviteID
     try {
-        const company = await Company.findOne({ "invitations.inviteToken": req.params.inviteToken })
-        if (!company) return next(new CustomError('this invite link is not valid', 400))
-
-        const matchedInvite = company.invitations.find(invite => invite.inviteToken === req.params.inviteToken)
-
-        const user = await User.create({
-            username: req.body.username,
-            password: req.body.password,
-            company: company._id,
-            email: matchedInvite.email
-        })
-
-        req.session.username = user.username
-
-        company.invitations = company.invitations.filter(invite => invite.inviteToken !== matchedInvite.inviteToken)
-
+        const company = await Company.findOne({ _id: req.user.company._id }).select('+invitations')
+        const invite = company.invitations.find(({ _id }) => _id.toString() === inviteID)
+        if (!invite) return next(new CustomError('cannot find this invite', 404))
+        company.invitations = company.invitations.filter(({ _id }) => _id.toString() !== inviteID)
         await company.save()
-
-        res.status(201).send({
+        res.status(200).send({
             status: 'success',
-            data: {
-                user
-            }
+            message: 'invited deleted'
         })
     }
     catch (err) {

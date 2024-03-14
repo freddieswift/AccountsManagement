@@ -15,3 +15,16 @@ export const inviteUser = async (email) => {
         displayAlert(err.response.data.message)
     }
 }
+
+export const deleteInvite = async (inviteID) => {
+    try {
+        await axios({
+            method: 'DELETE',
+            url: `/api/v1/users/invite/${inviteID}`
+        })
+        location.reload()
+    }
+    catch (err) {
+        displayAlert(err.response.data.message)
+    }
+}

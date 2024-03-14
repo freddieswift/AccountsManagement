@@ -6,3 +6,9 @@ block content
     div.pageContentContainer.adminContentContainer
         div.pageContent
             button.inviteUserButton Invite User
+            each invitation in invitations
+                .invitationCard(id=invitation._id)
+                    p #{invitation.email}
+                    .buttonContainer
+                        button.resenInviteButton Resend Invite
+                        button.deleteInviteButton Delete Invite

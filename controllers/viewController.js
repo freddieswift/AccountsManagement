@@ -19,9 +19,11 @@ exports.homepage = async (req, res, next) => {
 
 exports.admin = async (req, res, next) => {
     try {
+        const company = await Company.findOne({ _id: req.user.company._id }).select('+invitations')
         res.status(200).render('admin', {
             title: 'Admin',
-            user: req.user
+            user: req.user,
+            invitations: company.invitations
         })
     }
     catch (err) {
@@ -57,7 +59,7 @@ exports.createCompany = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-    const company = await Company.findOne({ "invitations.inviteToken": req.params.inviteToken })
+    const company = await Company.findOne({ "invitations.inviteToken": req.params.inviteToken }).select('+invitations')
     if (!company) return next(new CustomError('this invite link is not valid', 400))
     const matchedInvite = company.invitations.find(invite => invite.inviteToken === req.params.inviteToken)
 

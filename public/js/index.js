@@ -3,7 +3,7 @@ import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 import { togglePopUpForm } from './showPopUpForm.js'
 import { addYear } from './addYear.js'
-import { inviteUser } from './inviteUser.js'
+import { inviteUser, deleteInvite } from './inviteUser.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
@@ -12,6 +12,7 @@ const signupForm = document.querySelector('.signupForm')
 const logoutButton = document.querySelector('.logoutButton')
 const addYearButton = document.querySelector('.addYearButton')
 const inviteUserButton = document.querySelector('.inviteUserButton')
+const invitationCards = document.getElementsByClassName('invitationCard')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -86,4 +87,13 @@ if (inviteUserButton) {
         const userEmail = document.getElementById('userEmail').value
         inviteUser(userEmail)
     })
+}
+
+if (invitationCards.length > 0) {
+    for (let invitationCard of invitationCards) {
+        const deleteInviteButton = invitationCard.querySelector('.deleteInviteButton')
+        deleteInviteButton.addEventListener('click', e => {
+            deleteInvite(invitationCard.id)
+        })
+    }
 }
