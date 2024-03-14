@@ -1,4 +1,6 @@
 const Year = require('../models/yearModel')
+const Company = require('../models/companyModel')
+const CustomError = require('../error/customError')
 
 exports.homepage = async (req, res, next) => {
     try {
@@ -51,5 +53,16 @@ exports.createCompany = (req, res, next) => {
     }
     res.status(200).render('createCompany', {
         title: 'Create Company'
+    })
+}
+
+exports.register = async (req, res, next) => {
+    const company = await Company.findOne({ "invitations.inviteToken": req.params.inviteToken })
+    if (!company) return next(new CustomError('this invite link is not valid', 400))
+    const matchedInvite = company.invitations.find(invite => invite.inviteToken === req.params.inviteToken)
+
+    res.status(200).render('register', {
+        title: 'Register',
+        email: matchedInvite.email
     })
 }

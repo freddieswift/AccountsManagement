@@ -7,6 +7,7 @@ const router = express.Router()
 
 router.route('/login').get(viewController.login)
 router.route('/signup').get(viewController.signup)
+router.route('/register/:inviteToken').get(viewController.register)
 router.route('/')
     .get(
         authController.isLoggedIn,

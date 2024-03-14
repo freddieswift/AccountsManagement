@@ -1,4 +1,4 @@
-import { login, logout } from './login.js'
+import { login, logout, register } from './auth.js'
 import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 import { togglePopUpForm } from './showPopUpForm.js'
@@ -7,6 +7,7 @@ import { inviteUser } from './inviteUser.js'
 
 const loginForm = document.querySelector('.loginForm')
 const createCompanyForm = document.querySelector('.createCompanyForm')
+const registerForm = document.querySelector('.registerForm')
 const signupForm = document.querySelector('.signupForm')
 const logoutButton = document.querySelector('.logoutButton')
 const addYearButton = document.querySelector('.addYearButton')
@@ -26,6 +27,15 @@ if (createCompanyForm) {
         e.preventDefault()
         const name = document.getElementById('name').value
         createCompany(name)
+    })
+}
+
+if (registerForm) {
+    registerForm.addEventListener('submit', e => {
+        e.preventDefault()
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
+        register(username, password)
     })
 }
 

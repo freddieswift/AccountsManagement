@@ -45,7 +45,7 @@ app.use('/api/v1/company', companyRouter)
 app.use('/api/v1/year', yearRouter)
 
 app.all('*', (req, res, next) => {
-    next(new CustomError(`We can't find what you are looking for :(`, 404));
+    next(new CustomError(`we can't find what you are looking for :(`, 404));
 });
 //ERROR HANDLER
 app.use(errorHandler)

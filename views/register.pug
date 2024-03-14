@@ -1,0 +1,18 @@
+extends base
+
+block content
+    .formContainer
+        form.registerForm
+            h1.formTitle Register
+            .formGroup
+                label(for='email') email
+                input(type='email', id='email', value=email readonly)
+            .formGroup
+                label(for='username') username
+                input(type='text', id='username')
+            .formGroup
+                label(for='password') password
+                input(type='password', id='password')
+            .formGroup
+                button(type='submit') Register
+        

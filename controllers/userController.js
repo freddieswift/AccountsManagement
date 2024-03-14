@@ -69,6 +69,8 @@ exports.register = async (req, res, next) => {
             email: matchedInvite.email
         })
 
+        req.session.username = user.username
+
         company.invitations = company.invitations.filter(invite => invite.inviteToken !== matchedInvite.inviteToken)
 
         await company.save()
