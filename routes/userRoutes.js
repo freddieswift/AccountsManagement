@@ -22,6 +22,12 @@ router.route('/invite/:inviteID')
         authController.hasCompany,
         userController.deleteInvite
     )
+    .post(
+        authController.isLoggedIn,
+        authController.restrictTo('admin'),
+        authController.hasCompany,
+        userController.resendInvite
+    )
 router.route('/register/:inviteToken').post(userController.register)
 
 module.exports = router

@@ -28,3 +28,16 @@ export const deleteInvite = async (inviteID) => {
         displayAlert(err.response.data.message)
     }
 }
+
+export const resendInvite = async (inviteID) => {
+    try {
+        await axios({
+            method: 'POST',
+            url: `/api/v1/users/invite/${inviteID}`
+        })
+        displayAlert('invitation email has been resent')
+    }
+    catch (err) {
+        displayAlert(err.response.data.message)
+    }
+}

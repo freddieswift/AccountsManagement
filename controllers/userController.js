@@ -104,3 +104,22 @@ exports.deleteInvite = async (req, res, next) => {
         next(err)
     }
 }
+
+exports.resendInvite = async (req, res, next) => {
+    const inviteID = req.params.inviteID
+    try {
+        //check if the invite is for the user's company and if invite exists
+        const company = await Company.findOne({ _id: req.user.company._id }).select('+invitations')
+        const invite = company.invitations.find(({ _id }) => _id.toString() === inviteID)
+        if (!invite) return next(new CustomError('cannot find this invite', 404))
+        const inviteURL = `${req.protocol}://${req.get('host')}/register/${invite.inviteToken}`
+        await sendInviteEmail(invite.email, inviteURL)
+        res.status(200).send({
+            status: 'success',
+            message: 'invitation email has been resent'
+        })
+    }
+    catch (err) {
+        next(err)
+    }
+}
