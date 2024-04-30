@@ -21,6 +21,11 @@ const handleWebsiteError = (err, res) => {
     })
 }
 
+const handleDuplicateError = (err) => {
+    const field = Object.keys(err.keyValue)[0]
+    return new CustomError(`This ${field} is already in use. Please try another one`, 400)
+}
+
 module.exports = errorHandler = (err, req, res, next) => {
     let error
     if (err instanceof CustomError) {
@@ -34,7 +39,8 @@ module.exports = errorHandler = (err, req, res, next) => {
             error = new CustomError('Cannot find <SOMETHING> with that <SOMETHING>', 404)
         }
         else if (err.code === 11000) {
-            error = new CustomError('There is is already a <SOMETHING> with this <SOMETHING>, please try another one', 400)
+            error = handleDuplicateError(err)
+            //error = new CustomError('There is is already a <SOMETHING> with this <SOMETHING>, please try another one', 400)
         }
         else {
             console.log(err)
