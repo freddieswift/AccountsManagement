@@ -27,4 +27,11 @@ router.route('/admin')
         viewController.admin,
     )
 
+router.route('/year/:id')
+    .get(
+        authController.isLoggedIn,
+        authController.hasCompany,
+        viewController.yearPage
+    )
+
 module.exports = router

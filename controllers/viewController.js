@@ -14,7 +14,6 @@ exports.homepage = async (req, res, next) => {
     catch (err) {
         next(err)
     }
-
 }
 
 exports.admin = async (req, res, next) => {
@@ -67,4 +66,20 @@ exports.register = async (req, res, next) => {
         title: 'Register',
         email: matchedInvite.email
     })
+}
+
+exports.yearPage = async (req, res, next) => {
+    const yearID = req.params.id
+    try {
+        const year = await Year.findOne({ _id: yearID, company: req.user.company._id })
+        console.log(year)
+        res.status(200).render('year', {
+            title: year.name,
+            user: req.user,
+            year: year
+        })
+    }
+    catch (err) {
+        next(err)
+    }
 }

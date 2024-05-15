@@ -218,6 +218,7 @@ nav {
 }
 
 .yearRow:hover {
+  cursor: pointer;
   background-color: #da605a;
 }
 
