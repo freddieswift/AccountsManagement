@@ -1,14 +1,16 @@
 nav
     h1.companyName #{user.company.name}
     ul
-        li.navbarListItem.logoutButton
-            a.navbarLink(href="#") Logout
         li.navbarListItem
-            a.navbarLink(href="#") Me
+            a.navbarLink(class={activeNav: title === 'Homepage'} href="/") Home
         if user.role === 'admin'
             li.navbarListItem
-                a.navbarLink(href="/admin") Admin
+                a.navbarLink(class={activeNav: title === 'Admin'} href="/admin") Admin
         li.navbarListItem
-            a.navbarLink(href="/") Home
+            a.navbarLink(class={activeNav: title === 'Me'} href="#") Me
+        li.navbarListItem.logoutButton
+            a.navbarLink(href="#") Logout
+        
+        
     
     

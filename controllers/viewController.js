@@ -72,7 +72,7 @@ exports.yearPage = async (req, res, next) => {
     const yearID = req.params.id
     try {
         const year = await Year.findOne({ _id: yearID, company: req.user.company._id })
-        console.log(year)
+        if (!year) return next(new CustomError('We cannot find what you are looking for', 404))
         res.status(200).render('year', {
             title: year.name,
             user: req.user,

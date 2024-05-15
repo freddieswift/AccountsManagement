@@ -34,6 +34,7 @@ button {
 
 a {
   text-decoration: none;
+  color: #212738;
 }
 
 a:visited {
@@ -157,30 +158,47 @@ form button:hover {
 nav {
   background-color: #212738;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 12rem;
+  position: absolute;
+  height: 100%;
   align-items: center;
 }
 
+nav ul {
+  margin-top: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
 .companyName {
+  margin-top: 1rem;
   color: #edf2ef;
-  padding-left: 1rem;
 }
 
 .navbarListItem {
   list-style-type: none;
-  float: right;
-  border-left: 1px solid #212738;
 }
 
 .navbarLink {
-  display: block;
-  padding: 8px;
-  background-color: #f97068;
+  display: inline-block;
+  width: 100%;
   padding: 14px 16px;
+  color: #edf2ef;
+}
+
+.activeNav {
+  background-color: #da605a;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.navbarLink:visited {
+  color: #edf2ef;
 }
 
 .navbarLink:hover {
-  background-color: #da605a;
+  background-color: #2f374e;
 }
 
 /* PAGE CONTAINER STYLES --------------------------------------- */
@@ -190,6 +208,8 @@ nav {
   display: grid;
   height: 100%;
   padding: 1rem;
+  margin-left: 12rem;
+  overflow-y: scroll;
 }
 
 .pageContent {
@@ -212,8 +232,9 @@ nav {
 /* HOMEPAGE STYLES --------------------------------------- */
 
 .yearTable {
-  background-color: #f97068;
+  background-color: #edf2ef;
   margin: 0 1rem;
+  margin-bottom: 1rem;
   border-radius: 1rem;
 }
 
