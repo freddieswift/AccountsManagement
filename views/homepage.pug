@@ -14,7 +14,7 @@ block content
                     th Overheads
                     th Operating Income
                 each year in years
-                    tr.yearRow
+                    tr.yearRow(id=year._id)
                         td #{year.name}
                         td £#{year.turnover}
                         td £#{year.totalCOS}

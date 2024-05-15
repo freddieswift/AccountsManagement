@@ -13,6 +13,7 @@ const logoutButton = document.querySelector('.logoutButton')
 const addYearButton = document.querySelector('.addYearButton')
 const inviteUserButton = document.querySelector('.inviteUserButton')
 const invitationCards = document.getElementsByClassName('invitationCard')
+const yearRows = document.getElementsByClassName('yearRow')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -99,5 +100,13 @@ if (invitationCards.length > 0) {
         resendInviteButton.addEventListener('click', e => {
             resendInvite(invitationCard.id)
         })
+    }
+}
+
+if (yearRows) {
+    for (let yearRow of yearRows) {
+        yearRow.onclick = function () {
+            location.href = `/year/${yearRow.id}`
+        }
     }
 }
