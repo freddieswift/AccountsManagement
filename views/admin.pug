@@ -4,7 +4,7 @@ block content
     include _navbar
     include _inviteUserForm
     div.pageContentContainer.adminContentContainer
-        div.pageContent
+        div.pageContentCard
             button.inviteUserButton Invite User
             each invitation in invitations
                 .invitationCard(id=invitation._id)
