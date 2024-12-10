@@ -9,6 +9,7 @@ const viewRouter = require('./routes/viewRoutes')
 const userRouter = require('./routes/userRoutes')
 const companyRouter = require('./routes/companyRoutes')
 const yearRouter = require('./routes/yearRoutes')
+const partRouter = require('./routes/partRoutes')
 const errorHandler = require('./error/errorHandler')
 const CustomError = require('./error/customError')
 
@@ -43,6 +44,7 @@ app.use('/', viewRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/company', companyRouter)
 app.use('/api/v1/year', yearRouter)
+app.use('/api/v1/part', partRouter)
 
 app.all('*', (req, res, next) => {
     next(new CustomError(`we can't find what you are looking for :(`, 404));

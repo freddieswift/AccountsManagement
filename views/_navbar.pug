@@ -3,6 +3,8 @@ nav
     ul
         li.navbarListItem
             a.navbarLink(class={activeNav: title === 'Homepage'} href="/") Home
+        li.navbarListItem
+            a.navbarLink(class={activeNav: title === 'Parts'} href="/parts") Parts
         if user.role === 'admin'
             li.navbarListItem
                 a.navbarLink(class={activeNav: title === 'Admin'} href="/admin") Admin

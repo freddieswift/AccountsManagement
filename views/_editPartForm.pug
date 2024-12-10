@@ -1,0 +1,17 @@
+form.popUpForm(id='editPartForm')
+    h1 Edit Part
+    .formGroup
+        label(for='partNumberEdit') Part Number
+        input(type='text', id='partNumberEdit')
+    .formGroup
+        label(for='descriptionEdit') Description
+        input(type='text', id='descriptionEdit')
+    .formGroup
+        label(for='locationEdit') Location
+        input(type='text', id='locationEdit')
+    .formGroup
+        label(for='quantityEdit') Quantity
+        input(type='number', id='quantityEdit')
+    button(type='button').saveButton Save
+    button(type='button').deleteButton Delete
+    button(type='button').cancelButton Cancel

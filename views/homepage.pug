@@ -4,9 +4,9 @@ block content
     include _navbar
     include _addYearForm
     div.pageContentContainer.homepageContentContainer
-        div.pageContentCard.yearTableContentCard
+        div.pageContentCard.tableContentCard
             button.addYearButton Add Year
-            table.yearTable
+            table.table
                 thead
                     tr.headingRow
                         th Year
@@ -16,7 +16,7 @@ block content
                         th Operating Income
                 tbody
                     each year in years
-                        tr.yearRow(id=year._id)
+                        tr.dataRow.yearRow(id=year._id)
                             td #{year.name}
                             td £#{year.turnover}
                             td £#{year.totalCOS}

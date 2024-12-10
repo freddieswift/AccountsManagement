@@ -1,0 +1,32 @@
+extends base
+
+block content
+    include _navbar
+    include _addPartForm
+    include _editPartForm
+    div.pageContentContainer
+        div.pageContentCard
+            button.addPartButton Add Part
+            .partsSearch
+                form.searchForm(id='searchPartsForm')
+                    label(for='searchQuery') Search Parts
+                    input(name="searchTerm" type="text", id="searchQuery")
+                    select(name='searchType' id='searchType')
+                        option(value='partNumber') Part Number
+                        option(value='description') Description
+                        option(value='location') Location
+                    button.partsSearchButton Search
+            table.table
+                thead
+                    tr.headingRow
+                        th Part No.
+                        th Description
+                        th Location
+                        th Quantity
+                tbody
+                    each part in parts
+                        tr.dataRow.partRow(id=part._id)
+                            td #{part.partNumber}
+                            td #{part.description}
+                            td #{part.location}
+                            td #{part.quantity}

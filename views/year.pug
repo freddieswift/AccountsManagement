@@ -2,3 +2,24 @@ extends base
 
 block content
     include _navbar
+    div.pageContentContainer.yearContentContainer
+        div.pageContentCard.yearInfoCard
+            h1 #{year.name}
+            .yearInfoGroup
+                h4 Turnover
+                input(type="text")
+            .yearInfoGroup
+                h4 Gross Profit
+                input(type="text")
+            .yearInfoGroup
+                h4 Net Profit
+                input(type="text")
+            .yearInfoGroup
+                h4 Turnover
+                input(type="text")
+        div.pageContentCard
+            h1 Costs
+        div.pageContentCard
+            h1 Overheads
+        div.pageContentCard
+            h1 Operating Income

@@ -1,0 +1,16 @@
+form.popUpForm(id='addPartForm')
+    h1 Add Part
+    .formGroup
+        label(for='partNumber') Part Number
+        input(type='text', id='partNumber')
+    .formGroup
+        label(for='description') Description
+        input(type='text', id='description')
+    .formGroup
+        label(for='location') Location
+        input(type='text', id='location')
+    .formGroup
+        label(for='quantity') Quantity
+        input(type='number', id='quantity')
+    button Add Part
+    button(type='button').cancelButton Cancel

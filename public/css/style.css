@@ -92,21 +92,33 @@ a:visited {
   color: #212738;
 }
 
-form {
+.popUpForm {
   width: 22rem;
   background-color: #f97068;
-  display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 1rem;
   padding: 2rem;
+  display: none;
+  border: solid 1px #edf2ef;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.formTitle {
+.popUpForm {
   margin: 0;
 }
 
-form input {
+.loginForm,
+.signupForm,
+.registerForm {
+  display: flex;
+}
+
+.popUpForm input {
   border-radius: 1rem;
   width: 100%;
   border: none;
@@ -116,33 +128,23 @@ form input {
   text-align: center;
 }
 
-form label {
+.popUpForm label {
   margin: 1rem;
 }
 
-form button {
+.popUpForm button {
   background-color: #212738;
   color: #edf2ef;
   width: 80%;
 }
 
-form button:hover {
+.popUpForm button:hover {
   background-color: #2f374e;
 }
 
 .formMessage {
   display: none;
   text-align: center;
-}
-
-.popUpForm {
-  display: none;
-  border: solid 1px #edf2ef;
-  justify-content: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .showPopUpForm {
@@ -235,30 +237,32 @@ nav ul {
   row-gap: 1rem;
 }
 
-.yearTableContentCard {
+/* TABLE STYLES --------------------------------------- */
+
+.tableContentCard {
   overflow-y: scroll;
 }
 
-.yearTableContentCard::-webkit-scrollbar-track {
+.tableContentCard::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background-color: #f5f5f5;
 }
 
-.yearTableContentCard::-webkit-scrollbar {
+.tableContentCard::-webkit-scrollbar {
   width: 20px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   background-color: #212738;
 }
 
-.yearTableContentCard::-webkit-scrollbar-thumb {
+.tableContentCard::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #da605a;
 }
 
-.yearTable {
+.table {
   background-color: #f5f5f5;
   margin: 0 1rem;
   margin-bottom: 1rem;
@@ -266,7 +270,7 @@ nav ul {
   overflow-y: scroll;
 }
 
-.yearRow:hover {
+.dataRow:hover {
   cursor: pointer;
   background-color: #da605a;
 }
@@ -314,4 +318,38 @@ td {
 
 .invitationCard button:hover {
   background-color: #2f374e;
+}
+
+/* YEAR PAGE STYLES --------------------------------------- */
+
+.yearContentContainer {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr;
+  gap: 1rem;
+  color: #edf2ef;
+}
+
+.yearInfoCard {
+  grid-column: span 3;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.yearInfoCard h1 {
+  grid-column: span 4;
+}
+
+/* PARTS PAGE STYLES --------------------------------------- */
+
+.partsSearch {
+  background-color: #f97068;
+  border-radius: 1rem;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.partsSearchButton {
+  all: unset;
 }

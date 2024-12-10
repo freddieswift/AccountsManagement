@@ -13,6 +13,11 @@ router.route('/')
         authController.isLoggedIn,
         authController.hasCompany,
         viewController.homepage)
+router.route('/parts')
+    .get(
+        authController.isLoggedIn,
+        authController.hasCompany,
+        viewController.parts)
 router.route('/createCompany')
     .get(
         authController.isLoggedIn,

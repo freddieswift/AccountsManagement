@@ -1,5 +1,6 @@
 const Year = require('../models/yearModel')
 const Company = require('../models/companyModel')
+const Part = require('../models/partModel')
 const CustomError = require('../error/customError')
 
 exports.homepage = async (req, res, next) => {
@@ -80,6 +81,24 @@ exports.yearPage = async (req, res, next) => {
         })
     }
     catch (err) {
+        next(err)
+    }
+}
+
+exports.parts = async (req, res, next) => {
+    try {
+        let findOptions = { company: req.user.company }
+        if ('searchTerm' in req.query && 'searchType' in req.query) {
+            findOptions[req.query.searchType] = new RegExp(req.query.searchTerm, 'i')
+        }
+        const parts = await Part.find(findOptions)
+        res.status(200).render('parts', {
+            title: 'Parts',
+            user: req.user,
+            parts: parts
+        })
+    }
+    catch (error) {
         next(err)
     }
 }

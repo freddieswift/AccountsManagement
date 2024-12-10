@@ -3,6 +3,7 @@ import { createCompany } from './createCompany.js'
 import { signUp } from './signUp.js'
 import { togglePopUpForm } from './showPopUpForm.js'
 import { addYear } from './addYear.js'
+import { addPart, deletePart, updatePart } from './part.js'
 import { inviteUser, deleteInvite, resendInvite } from './inviteUser.js'
 
 const loginForm = document.querySelector('.loginForm')
@@ -14,6 +15,8 @@ const addYearButton = document.querySelector('.addYearButton')
 const inviteUserButton = document.querySelector('.inviteUserButton')
 const invitationCards = document.getElementsByClassName('invitationCard')
 const yearRows = document.getElementsByClassName('yearRow')
+const partRows = document.getElementsByClassName('partRow')
+const addPartButton = document.querySelector('.addPartButton')
 
 if (loginForm) {
     loginForm.addEventListener('submit', e => {
@@ -74,6 +77,30 @@ if (addYearButton) {
     })
 }
 
+if (addPartButton) {
+    const addPartForm = document.getElementById('addPartForm')
+    addPartButton.addEventListener('click', e => {
+        togglePopUpForm(addPartForm)
+    })
+    const cancelButton = addPartForm.getElementsByClassName('cancelButton')
+    cancelButton[0].addEventListener('click', e => {
+        togglePopUpForm(addPartForm)
+    })
+    addPartForm.addEventListener('submit', e => {
+        e.preventDefault()
+        const partNumber = document.getElementById('partNumber').value
+        const description = document.getElementById('description').value
+        const location = document.getElementById('location').value
+        const quantity = document.getElementById('quantity').value
+        addPart({
+            partNumber,
+            description,
+            location,
+            quantity
+        })
+    })
+}
+
 if (inviteUserButton) {
     const inviteUserForm = document.getElementById('inviteUserForm')
     inviteUserButton.addEventListener('click', e => {
@@ -109,4 +136,47 @@ if (yearRows) {
             location.href = `/year/${yearRow.id}`
         }
     }
+}
+
+if (partRows) {
+    const editPartForm = document.getElementById('editPartForm')
+    for (let partRow of partRows) {
+        partRow.onclick = function (e) {
+            togglePopUpForm(editPartForm)
+
+            let partDataArray = Array.from(partRow.childNodes).map(d => d.innerText)
+
+            const partNumberInput = document.getElementById('partNumberEdit')
+            const descriptionInput = document.getElementById('descriptionEdit')
+            const locationInput = document.getElementById('locationEdit')
+            const quantityInput = document.getElementById('quantityEdit')
+
+            partNumberInput.value = partDataArray[0]
+            descriptionInput.value = partDataArray[1]
+            locationInput.value = partDataArray[2]
+            quantityInput.value = partDataArray[3]
+
+            const deleteButton = editPartForm.getElementsByClassName('deleteButton')
+            deleteButton[0].addEventListener('click', e => {
+                deletePart(partRow.id)
+            })
+
+            const saveButton = editPartForm.getElementsByClassName('saveButton')
+            saveButton[0].addEventListener('click', e => {
+                const part = {
+                    partNumber: partNumberInput.value,
+                    description: descriptionInput.value,
+                    location: locationInput.value,
+                    quantity: quantityInput.value
+                }
+
+                updatePart(partRow.id, part)
+            })
+        }
+    }
+
+    const cancelButton = editPartForm.getElementsByClassName('cancelButton')
+    cancelButton[0].addEventListener('click', e => {
+        togglePopUpForm(editPartForm)
+    })
 }
